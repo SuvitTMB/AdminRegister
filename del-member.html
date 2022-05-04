@@ -1,0 +1,78 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="./css/TMBStyle.css">-->
+<link rel="stylesheet" href="./css/button.css">
+<link rel="stylesheet" href="./css/style_count.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/ekachon.css">
+<link rel="stylesheet" href='./css/w3.css' type="text/css">
+<!--
+<link rel="stylesheet" href="./css/bar.css">
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+
+</head>
+<body class="body">
+
+  <div class="container">
+    <div class="audio-examples-wrap" style="margin-top:20px; ">
+      <div id="audio1" data-src="http://www.uscis.gov/files/nativedocuments/Track%2093.mp3"></div>
+        <a href="#" class="playSound" data-id="test">
+          <div id="mp3close" onclick="ShowSound(0)" style="display: none;" class="box-mp3"><img src="./mp3/icons8-mute.gif" width="50px"></div>
+          <div id="mp3open" onclick="ShowSound(1)" style="display: none;" class="box-mp3"><img src="./mp3/wave.gif" width="50px"></div>
+        </a>
+      </div>
+      <audio class="audio" id="test" src="./mp3/JingleBells.mp3"></audio>
+    </div>
+    <center>
+      <div style="margin-top:90px;padding:28px;font-size:28px;color:#fff;font-weight: 400;">Happy New Year 2022</div>
+      <div style="width:100%;">
+        <div>
+          <button href="#" id="js-validate_button" class="button" onclick="DeleteMember()" style="font-size: 15px;color:#000;font-weight: 600;">Delete Member</button>
+        </div>
+      </div>
+      <div style="width:90%;margin-top:45px; height: 100px;">
+        <div id="DisplayReward"></div>
+        <!--
+        <div class="box-random" onclick="ViewID('08400')">08400</div>
+        <div class="box-random" onclick="ViewID('12345')">12345</div>
+        <div class="box-random" onclick="ViewID('07865')">07865</div>
+        <div class="box-random" onclick="ViewID('09876')">09876</div>
+      -->
+      </div>
+    </center>
+  </div>
+
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<!--
+<script src='https://codepen.io/jmsbrr/pen/GNwOMx'></script>
+<script src='https://cdn.jsdelivr.net/velocity/1.2.2/velocity.min.js'></script>
+-->
+<script src="./js/del-member.js"></script>
+
+<script type="text/javascript">
+
+/*
+
+const myJSON = '[{"EmpID": "05964","EmpName": "นวลพิศ อุทัยพัฒน์","EmpPosition": "หัวหน้า กิจกรรมสัมพันธ์งานขายลูกค้าบุคคล","EmpDepartment": "สื่อสารและกิจกรรมสัมพันธ์งานขายลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0},{"EmpID": "07823","EmpName": "วัฒนชัย แย้มแสงสังข์","EmpPosition": "หัวหน้า ใบอนุญาตประกอบวิชาชีพบุคลากรงานขายลูกค้า","EmpDepartment": "พัฒนาบุคลากรงานขาย ลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0},{"EmpID": "08400","EmpName": "สุวิทย์ ชัยรุ่งปัญญา","EmpPosition": "ผู้เชี่ยวชาญ-กิจกรรมสัมพันธ์งานขายลูกค้าบุคคล","EmpDepartment": "สื่อสารและกิจกรรมสัมพันธ์งานขายลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0},{"EmpID": "09241","EmpName": "อดุลย์ ประดิษฐาน","EmpPosition": "ผู้เชี่ยวชาญ-บริหาร Incentive งานขายลูกค้าบุคคล","EmpDepartment": "บริหาร Incentive งานขายลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0},{"EmpID": 10676,"EmpName": "พรทิพย์ พงศากุลประวีณ์","EmpPosition": "ผู้เชี่ยวชาญ-บริหาร Incentive งานขายลูกค้าบุคคล","EmpDepartment": "บริหาร Incentive งานขายลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0},{"EmpID": 12578,"EmpName": "วรรณา จรดล","EmpPosition": "ผู้เชี่ยวชาญอาวุโส-บริหาร Incentive งานขายลูกค้าบุคคล","EmpDepartment": "บริหาร Incentive งานขายลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0},{"EmpID": 13116,"EmpName": "อุไรวรรณ พุ่มทองคำ","EmpPosition": "เจ้าหน้าที่อาวุโส-ฝึกอบรมบุคลากรงานขายลูกค้าบุคคล","EmpDepartment": "พัฒนาบุคลากรงานขาย ลูกค้าบุคคล","EmpGroup": "RSOC","RandomCheck": 0}]';
+//'[{"EmpId": 22222,"RandomCheck": 0},{"EmpId": 33333,"RandomCheck": 0},{"EmpId": 44444,"RandomCheck": 0}]';
+const myArray = JSON.parse(myJSON);
+//console.log(myArray);
+
+//var object = {};
+
+for (var i = 0; i < myJSON.length; i++) {
+    //console.log(myArray[i]);
+    console.log(myArray[i].EmpID+"====="+myArray[i].EmpName);
+
+}
+*/
+</script>
+</body>

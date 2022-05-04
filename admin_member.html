@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>BBD Specialist Bootcamp 2022</title>
+  <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="img/favicom.ico" rel="icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/table.css' rel="stylesheet" type="text/css">
+
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'>
+  <link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+    <style type="text/css">
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 2px 6px;
+        }
+        table.dataTable thead th, table.dataTable thead td {
+            background: #f68b1f; color: #ffffff; padding: 4px; margin-top:15px;
+        }
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate { 
+            margin-bottom: 10px;
+        }
+        .txt-center { text-align: center; }
+        .txt-right { text-align: right; right: 10px; }
+        .a { width:10px; text-align: center;}
+        .b { height:10px; text-align: center;}
+        .table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd { 
+        	cursor: pointer; 
+        }
+        .table.dataTable.display tbody tr.odd>.sorting_1, table.dataTable.order-column.stripe tbody tr.odd>.sorting_1 {
+          background-color: #0056ff; color:#ffffff;
+        }
+        .table.dataTable tbody tr {
+          background:#ff0000;
+        }
+        .table.dataTable tbody tr { 
+        	cursor: pointer; 
+        }
+        .btn-add {
+          max-width:50px !important; padding:2px 5px; font-size: 11px; margin-top:0px;
+          min-width: 50px;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<!--
+<div class="navbar1">
+  <center><div class="btn-t2" onclick="location.href='digitalympic.html'">กลับไปหน้าแรก</div></center>
+</div>
+-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#myPage" onclick="location.href='admin_round.html'">Retail Society</a>
+    </div>
+  </div>
+</nav>
+
+  <center>
+
+
+  <div style="margin-top: 60px ;color:#555555;padding:8px;font-weight: 600;">
+    <div class="btn-t2" onclick="location.replace('admin_round.html');">รอบอบรม</div>
+    <div class="btn-t0" onclick="location.replace('admin_member.html');">สมาชิก</div> 
+    <div class="btn-t2" onclick="location.replace('admin_register.html');">ลงทะเบียน</div> 
+    <div class="btn-t2" onclick="location.replace('add-memberreg.html');">Load Member</div> 
+    <!--
+    <div class="btn-t2" onclick="location.replace('admin_songkarn.html');">สงกรานต์</div> 
+    -->
+  </div>
+
+  <div id="loading" style="margin-top:20px;text-align: center;">
+    <img src="./img/paint-roller.gif" style="width:40%;">
+  </div>
+
+
+  <div id="OpenData" class="t-table" style="margin-top:0px;display: none;">
+    <div style="color:#0056ff;padding:8px;">
+  		<select id="ClickMenu" onchange="SelectMeunu()" style="padding: 2px 10px;border-radius: 5px;background: #ffff00; cursor: pointer;">
+  		  <option value="R1">R1 : BA/MF (รุ่น 1)</option>
+  		  <option value="R2">R2 : BA/MF (รุ่น 2)</option>
+  		  <option value="R3">R3 : BA/MF (รุ่น 3)</option>
+        <option value="R4">R3 : BA/MF (รุ่น 4)</option>
+        <option value="R5">R5 : Home Loan (รุ่น 1)</option>
+        <option value="R6">R6 : CYC (รุ่น 1)</option>
+        <option value="R7">R7 : Home Loan (รุ่น 2)</option>
+        <option value="R8">R8 : CYC (รุ่น 2)</option>
+        <option value="R9">R9 : CYC (รุ่น 3)</option>
+        <option value="R10">R10 : CYC (รุ่น 4)</option>
+        <option value="R11">R11 : CYC (รุ่น 5)</option>
+        <option value="R12">เข้าร่วมไม่ได้</option>
+        <option value="R13">BootCamp#1 Day-1 (18/04/2565)</option>
+        <option value="WB-Q2">WB-Q2 Townhall</option>
+        <option value="khaoyai">ttb Outing at Khao Yai</option>
+        <option value="T01Day1">Training #1 Day 1</option>
+        <option value="T01Day2">Training #1 Day 2</option>
+        <option value="T01Day3">Training #1 Day 3</option>
+        <option value="T01Day4">Training #1 Day 4</option>
+        <option value="T01Day5">Training #1 Day 5</option>
+        <option value="T02Day1">Training #2 Day 1</option>
+        <option value="T02Day2">Training #2 Day 2</option>
+        <option value="T02Day3">Training #2 Day 3</option>
+        <option value="T02Day4">Training #2 Day 4</option>
+        <option value="T02Day5">Training #2 Day 5</option>
+        <option value="T03Day1">Training #3 Day 1</option>
+        <option value="T03Day2">Training #3 Day 2</option>
+        <option value="T03Day3">Training #3 Day 3</option>
+        <option value="T03Day4">Training #3 Day 4</option>
+        <option value="T03Day5">Training #3 Day 5</option>
+        <option value="WealthRM">Wealth RM Capability Assessment (30 เมย. 65)</option>
+        <option value="PWA1">WB Participants (8-9 พค. 65)</option>
+        <option value="BM#1D1">BM Bootcamp #1 (9 พค. 65)</option>
+        <option value="BM#2D1">BM Bootcamp #2 (12 พค. 65)</option>
+        <option value="BM#3D1">BM Bootcamp #3 (1 มิย. 65)</option>
+<!--
+        <option value="BM#2D2">WB Participants (13 พค. 65)</option>
+        <option value="BM#1D2">BM Bootcamp #1 (10 พค. 65)</option>
+        <option value="BM#3D2">WB Participants (2 มิย. 65)</option>
+-->
+  		</select>
+    </div>
+	</div>
+  <div class="btn-t3" onclick="DataUpdate()" style="font-size: 11px;">Update Database</div>
+  </center>
+
+  <div style="width:98%; margin:0 auto;">
+    <table id="ex-table" class="display" style="width:100%;font-size: 11px;color:#444444;">
+      <thead>
+        <tr>
+          <th style="width:6%;">EmpID</th>
+          <th style="width:15%;">EmpName</th>
+          <th style="width:24%;">Position</th>
+          <th style="width:16%;">Branch</th>
+          <th style="width:6%;">Status</th>
+          <th style="width:6%;">Status</th>
+          <th style="width:6%;">Set Box</th>
+          <th style="width:18%;">Time</th>
+          <th style="width:6%;">Size</th>
+          <!--<th style="text-align: center;width:7%;">รายการ</th>-->
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="clr" style="height: 40px;"></div>
+
+
+<div id="id01" class="w3-modal w3-animate-opacity">
+  <div class="w3-modal-content w3-card-4">
+    <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
+        <div id="DisplayByItem"></div>
+        <!--<div class="btn-t2" onclick="CloseAll()">ปิดหน้าต่าง</div>-->
+      </center>
+    </div>
+  </div>
+  <div class="clr" style="height: 50px;"></div>
+</div>
+
+<!-- partial -->
+<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js'></script>
+<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js'></script>
+<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
+
+<script  src="./js/admin_member.js"></script>
+
+</body>
+</html>

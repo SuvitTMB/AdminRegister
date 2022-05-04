@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>BBD Specialist Bootcamp 2022</title>
+  <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="img/favicom.ico" rel="icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/table.css' rel="stylesheet" type="text/css">
+
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'>
+  <link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css'>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+    <style type="text/css">
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 2px 6px;
+        }
+        table.dataTable thead th, table.dataTable thead td {
+            background: #f68b1f; color: #ffffff; padding: 4px; margin-top:15px;
+        }
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate { 
+            margin-bottom: 10px;
+        }
+        .txt-center { text-align: center; }
+        .txt-right { text-align: right; right: 10px; }
+        .a { width:10px; text-align: center;}
+        .b { height:10px; text-align: center;}
+        .table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd { 
+        	cursor: pointer; 
+        }
+        .table.dataTable.display tbody tr.odd>.sorting_1, table.dataTable.order-column.stripe tbody tr.odd>.sorting_1 {
+          background-color: #0056ff; color:#ffffff;
+        }
+        .table.dataTable tbody tr {
+          background:#ff0000;
+        }
+        .table.dataTable tbody tr { 
+        	cursor: pointer; 
+        }
+        .btn-add {
+          max-width:50px !important; padding:2px 5px; font-size: 11px; margin-top:0px;
+          min-width: 50px;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<!--
+<div class="navbar1">
+  <center><div class="btn-t2" onclick="location.href='digitalympic.html'">กลับไปหน้าแรก</div></center>
+</div>
+-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#myPage" onclick="location.href='admin_round.html'">Retail Society</a>
+    </div>
+  </div>
+</nav>
+
+  <center>
+
+
+  <div style="margin-top: 60px ;color:#555555;padding:8px;font-weight: 600;">
+    <div class="btn-t2" onclick="location.replace('admin_round.html');">รอบอบรม</div>
+    <div class="btn-t2" onclick="location.replace('admin_member.html');">สมาชิก</div> 
+    <div class="btn-t0" onclick="location.replace('admin_register.html');">ลงทะเบียน</div> 
+    <div class="btn-t2" onclick="location.replace('add-memberreg.html');">Load Member</div> 
+    <!--
+    <div class="btn-t2" onclick="location.replace('admin_songkarn.html');">สงกรานต์</div> 
+    -->
+  </div>
+
+  <div id="loading" style="margin-top:20px;text-align: center;">
+    <img src="./img/paint-roller.gif" style="width:40%;">
+  </div>
+
+
+  <div id="OpenData" class="t-table" style="margin-top:0px;display: none;">
+    <div style="color:#0056ff;padding:8px;">
+  		<select id="ClickMenu" onchange="SelectMeunu()" style="padding: 2px 10px;border-radius: 5px;background: #ffff00; cursor: pointer;">
+  		  <option value="R1">R1 : BA/MF (รุ่น 1) Day 1</option>
+        <option value="R1-1">R1 : BA/MF (รุ่น 1) Day 2</option>
+  		  <option value="R2">R2 : BA/MF (รุ่น 2) Day 1</option>
+        <option value="R2-1">R2 : BA/MF (รุ่น 2) Day 2</option>
+  		  <option value="R3">R3 : BA/MF (รุ่น 3) Day 1</option>
+        <option value="R3-1">R3 : BA/MF (รุ่น 3) Day 2</option>
+        <option value="R4">R4 : BA/MF (รุ่น 4) Day 1</option>
+        <option value="R4-1">R4 : BA/MF (รุ่น 4) Day 2</option>
+        <option value="R5">R5 : Home Loan (รุ่น 1) Day 1</option>
+        <option value="R5-1">R5 : Home Loan (รุ่น 1) Day 2</option>
+        <option value="R6">R6 : CYC (รุ่น 1) Day 1</option>
+        <option value="R6-1">R6 : CYC (รุ่น 1) Day 2</option>
+        <option value="R7">R7 : Home Loan (รุ่น 2) Day 1</option>
+        <option value="R7-1">R7 : Home Loan (รุ่น 2) Day 2</option>
+        <option value="R8">R8 : CYC (รุ่น 2) Day 1</option>
+        <option value="R8-1">R8 : CYC (รุ่น 2) Day 2</option>
+        <option value="R9">R9 : CYC (รุ่น 3) Day 1</option>
+        <option value="R9-1">R9 : CYC (รุ่น 3) Day 2</option>
+        <option value="R10">R10 : CYC (รุ่น 4) Day 1</option>
+        <option value="R10-1">R10 : CYC (รุ่น 4) Day 2</option>
+        <option value="R11">R11 : CYC (รุ่น 5) Day 1</option>
+        <option value="R11-1">R11 : CYC (รุ่น 5) Day 2</option>
+        <option value="RASC">RASC Workshop (13 มกราคม 2565)</option>
+        <option value="BPA-1">BPA Workshop (27 มกราคม 2565)</option>
+        <option value="BPA-2">BPA Workshop (28 มกราคม 2565)</option>
+        <option value="SBO">SBO Workshop (4 กุมภาพันธ์ 2565)</option>
+        <option value="WB1">Wealth Banking (07/02/2565)</option>
+        <option value="MGMT1">MGMT เชียงใหม่ (12/02/2565)</option>
+        <option value="MGMT2">MGMT-BKK (BM) (19/02/2565)</option>
+        <option value="MGMT4">MGMT-URT (BM) (26/02/2565)</option>
+        <option value="MGMT5">MGMT-URT (AL) (26/02/2565)</option>
+        <option value="MGMT8">MGMT-ขอนแก่น (BM) (05/03/2565)</option>
+        <option value="MGMT9">MGMT-ขอนแก่น (AL) (05/03/2565)</option>
+        <option value="MGMT6">MGMT-Region 1 (08/03/2565)</option>
+        <option value="MGMT7">MGMT-Region 2 (08/03/2565)</option>
+        <option value="SalesWorkshop">RASC Sales Support Workshop (17/02/2565)</option>
+        <option value="BAWorkshop">BA Workshop (18/02/2565)</option>
+        <option value="SBOTrip">SBO Trip-1 (11/03/2565)</option>
+        <option value="VISITbr1">Visit Branch#1 (24/03/2565)</option>
+        <option value="VISITbr2">Visit Branch#2 (25/03/2565)</option>
+        <option value="WB-Q2">WB Q2-Townhall (01/04/2565)</option>
+        <option value="khaoyai">ttb Outing at Khao Yai (02/04/2565)</option>
+        <option value="R13">BootCamp#1 Day1 (18/04/2565)</option>
+        <option value="R14">BootCamp#1 Day2 (19/04/2565)</option>
+        <option value="T01Day1">หลักสูตรอบรม รุ่นที่ 1 Day 1 (18/04/2565)</option>
+        <option value="T01Day2">หลักสูตรอบรม รุ่นที่ 1 Day 2 (19/04/2565)</option>
+        <option value="T01Day3">หลักสูตรอบรม รุ่นที่ 1 Day 3 (20/04/2565)</option>
+        <option value="T01Day4">หลักสูตรอบรม รุ่นที่ 1 Day 4 (21/04/2565)</option>
+        <option value="T01Day5">หลักสูตรอบรม รุ่นที่ 1 Day 5 (22/04/2565)</option>
+        <option value="T02Day1">หลักสูตรอบรม รุ่นที่ 2 Day 1 (23/04/2565)</option>
+        <option value="T02Day2">หลักสูตรอบรม รุ่นที่ 2 Day 2 (24/04/2565)</option>
+        <option value="T02Day3">หลักสูตรอบรม รุ่นที่ 2 Day 3 (25/04/2565)</option>
+        <option value="T02Day4">หลักสูตรอบรม รุ่นที่ 2 Day 4 (26/04/2565)</option>
+        <option value="T02Day5">หลักสูตรอบรม รุ่นที่ 2 Day 5 (27/04/2565)</option>
+        <option value="T03Day1">หลักสูตรอบรม รุ่นที่ 3 Day 1 (13/05/2565)</option>
+        <option value="T03Day2">หลักสูตรอบรม รุ่นที่ 3 Day 2 (14/05/2565)</option>
+        <option value="T03Day3">หลักสูตรอบรม รุ่นที่ 3 Day 3 (15/05/2565)</option>
+        <option value="T03Day4">หลักสูตรอบรม รุ่นที่ 3 Day 4 (16/05/2565)</option>
+        <option value="T03Day5">หลักสูตรอบรม รุ่นที่ 3 Day 5 (17/05/2565)</option>
+        <option value="WealthRM">Wealth RM Capability Assessment (30 เมย. 65)</option>
+        <option value="PWA1">WB Participants (8-9 พค. 65)</option>
+        <option value="BM#1D1">BM Bootcamp #1 - D1 (9 พค. 65)</option>
+        <option value="BM#1D2">BM Bootcamp #1 - D2 (10 พค. 65)</option>
+        <option value="BM#2D1">BM Bootcamp #2 - D1 (12 พค. 65)</option>
+        <option value="BM#2D2">BM Bootcamp #2 - D2 (13 พค. 65)</option>
+        <option value="BM#3D1">BM Bootcamp #3 - D1 (1 มิย. 65)</option>
+        <option value="BM#3D2">BM Bootcamp #3 - D2 (2 มิย. 65)</option>
+  		</select>
+    </div>
+    <div class="btn-t1" onclick="UpdateData()">Update Data</div>
+	</div>
+  </center>
+
+  <div style="width:98%; margin:0 auto;">
+    <table id="ex-table" class="display" style="width:100%;font-size: 11px;color:#444444;">
+      <thead>
+        <tr>
+          <th style="width:12%;">Zone</th>
+          <th style="width:6%;">EmpID</th>
+          <th style="width:14%;">EmpName</th>
+          <th style="width:8%;">Member</th>
+          <th style="width:8%;">Register</th>
+          <th style="width:8%;">Set Box</th>
+          <th style="width:8%;">Target</th>
+          <!--<th style="width:8%;">ผล ATK</th>-->
+          <th style="width:8%;">Size</th>
+          <th style="width:8%;">Size</th>
+          <th style="width:16%;">DateTime</th>
+          <!--<th style="text-align: center;width:7%;">รายการ</th>-->
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="clr" style="height: 40px;"></div>
+
+
+<div id="id01" class="w3-modal w3-animate-opacity">
+  <div class="w3-modal-content w3-card-4">
+    <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
+        <div id="DisplayByItem"></div>
+        <!--<div class="btn-t2" onclick="CloseAll()">ปิดหน้าต่าง</div>-->
+      </center>
+    </div>
+  </div>
+  <div class="clr" style="height: 50px;"></div>
+</div>
+
+<!-- partial -->
+<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js'></script>
+<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js'></script>
+<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
+
+<script  src="./js/admin_register.js"></script>
+
+</body>
+</html>

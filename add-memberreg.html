@@ -1,0 +1,70 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="./img/favicom.ico" rel="icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/button.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/ekachon.css">
+<link rel="stylesheet" href='./css/w3.css' type="text/css">
+<!--
+<link rel="stylesheet" href="./css/bar.css">
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+
+</head>
+<body class="body">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#myPage" onclick="location.href='admin_round.html'">Retail Society</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <center>
+    <div style="margin-top: 60px ;color:#555555;padding:8px;font-weight: 600;">
+      <div class="btn-t2" onclick="location.replace('admin_round.html');">รอบอบรม</div>
+      <div class="btn-t2" onclick="location.replace('admin_member.html');">สมาชิก</div> 
+      <div class="btn-t2" onclick="location.replace('admin_register.html');">ลงทะเบียน</div> 
+      <div class="btn-t0" onclick="location.replace('add-memberreg.html');">Load Member</div> 
+      <!--
+      <div class="btn-t2" onclick="location.replace('admin_songkarn.html');">สงกรานต์</div> 
+      -->
+    </div>
+      <div style="width:100%;">
+        <div style="margin-top:20px;font-size: 13px; color:#0056ff;padding:20px auto 5px auto;">เพิ่ม/ลบ ข้อมูลระบบลงทะเบียน</div>
+          <center>
+          <div style="width:150px;margin:10px auto;"><input required type="text" class="form-control" id="txtCampRound" placeholder="ข้อมูลประจำงวด" style="color:#f68b1f; font-size: 11px !important; font-weight: 600; text-align: center;"/></div>
+        </center>
+        <div class="clr"></div>
+        <div>
+          <button href="#" id="js-validate_button" class="button" onclick="DeleteMember()" style="font-size: 14px;color:#ff0000;font-weight: 600;padding:5px 30px;margin:30px auto;">ลบข้อมูลทั้งหมด<br>ตรวจสอบก่อนลบข้อมูล
+            <br><div id="DisplayAllMember" style="color:#000000; font-weight: 600; font-size: 13px;"></div></button>
+        </div>
+
+        <div style="margin-top:10px;font-weight: 600; color:#0056ff;">ข้อมูลที่จะเพิ่มเข้า Database</div>
+        <div><a href="https://csvjson.com/csv2json" target="_Blank"><b><font color="#ff0000">แปล File เป็น Json</font></b></a></div>
+        <div style="width:600px;margin-top:10px;"><textarea class="textarea" id="txtDataJson" style="width:600px; height: 200px;"></textarea></div>
+        <div>
+          <button href="#" id="js-validate_button" class="button" onclick="AddNewData()" style="font-size: 14px;color:#000;font-weight: 600;padding:5px 30px;margin-top:14px;">เพิ่มข้อมูลเข้า Database</button>
+        </div>
+      </div>
+
+      <div class="clr" style="height: 40px;"></div>
+
+
+
+
+      </div>
+    </center>
+  </div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src="./js/add-memberreg.js"></script>
+
+</body>
