@@ -12,7 +12,7 @@ var EidRandom = 0;
 var ok = 0;
 var MemberINClass = 0;
 var SumAllMember = 0;
-var sCampRound = "WealthRM";
+var sCampRound = "BM#3D1";
 
 
 function Connect_DB() {
@@ -82,6 +82,7 @@ function AddNewData() {
 
 function DeleteMember() {
   //alert("Delete");
+  MemberINClass = 0;
   db.where('CampRound','==', sCampRound)
   //.limit(1)
   .get().then((snapshot)=> {
@@ -97,6 +98,7 @@ function DeleteMember() {
 
 
 function CountMember() {
+  SumAllMember = 0;
   db.where('CampRound','==', sCampRound)
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
@@ -106,4 +108,11 @@ function CountMember() {
     $("#DisplayAllMember").html("จำนวน "+ SumAllMember+ " ข้อมูล");  
   });
 
+}
+
+
+function UpdateCode() {
+  //alert(document.getElementById("txtCampRound").value);
+  sCampRound = document.getElementById("txtCampRound").value;
+  CountMember();
 }
